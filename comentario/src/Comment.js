@@ -1,12 +1,5 @@
 import React, {Component} from 'react'
 
-export class Comment extends Component {
-  render() {
-    return (
-      <p
-        class='alert alert-light'>{this.props.comment.comment}</p>
-    )
-  }
-}
-
+const Comment = props => 
+  <p className='alert alert-light'>{props.comment.comment}</p>
 export default Comment
