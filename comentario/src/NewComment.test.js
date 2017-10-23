@@ -23,5 +23,6 @@ describe('<NewComment />', () => {
     expect(eventMock.preventDefault.mock.calls.length).toBe(1)
     expect(postNewCommentMock.mock.calls.length).toBe(1)
     expect(wrapper.instance().refs.comment.value).toBe('')
+    expect(postNewCommentMock.mock.calls[0][0].comment).toBe('test')
   });
 })
