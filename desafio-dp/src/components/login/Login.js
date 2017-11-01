@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Redirect } from 'react-router'
+import { Redirect } from 'react-router'
 import axios from 'axios'
 import md5 from 'md5'
 
@@ -39,6 +39,7 @@ class Login extends Component {
       login['publicKey'] = event.target.value
       this.setState({...login, login})
       break;
+      default:
     }
   }
 
@@ -75,15 +76,15 @@ class Login extends Component {
   }
 
   render() {
-    const {caracters, login, status, ts} = this.state
+    const {login, status, ts} = this.state
     return (
       <div className="container">
         <form className="form-signin">
           <h2 className="form-signin-heading">Dados de acesso</h2>
           <label className="sr-only" >private_key</label>
-          <input name='privateKey' value={login.privateKey} type="text" className="form-control" placeholder="private_key" onChange={this.handleLoginKey}/>
+          <input name='privateKey' type="text" className="form-control" placeholder="Digite sua Private Key" onChange={this.handleLoginKey}/>
           <label className="sr-only">public_key</label>
-          <input name='publicKey' value={login.publicKey} type="password" className="form-control" placeholder="public_key" onChange={this.handleLoginKey}/>
+          <input name='publicKey' type="password" className="form-control" placeholder="Digite sua Public Key" onChange={this.handleLoginKey}/>
           {status === 401 || status === 409 ? (
             <div className="alert alert-danger" role="alert">
               Usuário ou senha invalida
@@ -92,7 +93,7 @@ class Login extends Component {
           {status === 200 ? (
            <Redirect to={`/home/${ts}/${login.privateKey}/${login.publicKey}`} state={{teste: 'teste'}}/>
           ) : ''}
-          <button className="btn btn-lg btn-primary btn-block" onClick={this.handleLogin}>Acessar</button>
+          <button type="submit" value="Submit" className="btn btn-lg btn-primary btn-block" onClick={this.handleLogin}>Acessar</button>
         </form>
       </div>
     )
