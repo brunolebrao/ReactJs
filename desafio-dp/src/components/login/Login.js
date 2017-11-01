@@ -50,7 +50,7 @@ class Login extends Component {
 
   handleLogin = (event) => {
     const {login} = this.state
-    const ts = 1
+    const ts = new Date().getTime();
     let hash = md5(ts + login.privateKey + login.publicKey)
     event.preventDefault()
     axios.get('https://gateway.marvel.com/v1/public/characters', {
@@ -63,7 +63,8 @@ class Login extends Component {
     .then(res => {
       this.setState({
         caracters: res.data.data,
-        status: res.status
+        status: res.status,
+        ts: ts
       })
     })
     .catch(err => {
@@ -74,22 +75,22 @@ class Login extends Component {
   }
 
   render() {
-    const {caracters, login, status} = this.state
+    const {caracters, login, status, ts} = this.state
     return (
       <div className="container">
         <form className="form-signin">
           <h2 className="form-signin-heading">Dados de acesso</h2>
           <label className="sr-only" >private_key</label>
-          <input name='privateKey' value={login.privateKey} type='text' className="form-control" placeholder="private_key" onChange={this.handleLoginKey}/>
+          <input name='privateKey' value={login.privateKey} type="text" className="form-control" placeholder="private_key" onChange={this.handleLoginKey}/>
           <label className="sr-only">public_key</label>
           <input name='publicKey' value={login.publicKey} type="password" className="form-control" placeholder="public_key" onChange={this.handleLoginKey}/>
-          {status === 401 ? (
-            <div class="alert alert-danger" role="alert">
+          {status === 401 || status === 409 ? (
+            <div className="alert alert-danger" role="alert">
               Usuário ou senha invalida
             </div>
           ) : ''}
           {status === 200 ? (
-           <Redirect to="/home"/>
+           <Redirect to={`/home/${ts}/${login.privateKey}/${login.publicKey}`} state={{teste: 'teste'}}/>
           ) : ''}
           <button className="btn btn-lg btn-primary btn-block" onClick={this.handleLogin}>Acessar</button>
         </form>
