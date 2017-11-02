@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import md5 from 'md5'
-import Img from 'react-image'
+import { Redirect } from 'react-router'
+import { BrowserRouter, Link } from 'react-router-dom'
 
 class Detail extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class Detail extends Component {
             caracters: [],
             comics: []
         }
-      
+        this.handleBack = this.handleBack.bind(this)
       }
     componentDidMount() {
         const {match} = this.props
@@ -44,20 +45,41 @@ class Detail extends Component {
           })
       }
 
+      handleBack = () => {
+        const {match} = this.props
+        const pv = 'c7211b772d95c9f305f27605dac085ac50b95e2d';
+        return <Redirect to={`/home/${match.params.ts}/${pv}/${match.params.pb}`}/>
+      }
+
     render() {
         const {caracters, comics} = this.state
+        const {match} = this.props
+        const pv = 'c7211b772d95c9f305f27605dac085ac50b95e2d';
+        console.log(caracters)
         return (
             <div className='container'>
                 <div className='detail-box-container'>
                     <div className='detail-box-img-container'>
                        {caracters.map(item => {
-                           //const teste = `${item.thumbnail.path}.${item.thumbnail.extension}`;
+                           return <img key={1} src={`${item.thumbnail.path}.${item.thumbnail.extension}`} alt="teste"/>
                         })}
                     </div>
                     <div className='detail-box-text-container'>
-                        <div className='detail-box-text-top'>detail-box-text-top</div>
-                        <div className='detail-box-text-botton'>etail-box-text-botton</div>
+                        <div className='detail-box-text-top'>
+                            {caracters.map(item => {
+                                return <h4 key={2}>{item.name}</h4>
+                            })}
+                        </div>
+                        <div className='detail-box-text-bottom'>
+                            {caracters.map(item => {
+                                return <div key={3}><h5>Descrição:</h5><p>{item.description}</p></div>
+                            })}
+                        </div>
+                        
                     </div>
+                </div>
+                <div className='detail-button'>
+                    <Link className="btn btn-lg btn-primary" to={`/home/${match.params.ts}/${pv}/${match.params.pb}`} >Voltar</Link>
                 </div>
             </div>
         );

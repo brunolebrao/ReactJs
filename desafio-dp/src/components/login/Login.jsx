@@ -91,7 +91,7 @@ class Login extends Component {
             </div>
           ) : ''}
           {status === 200 ? (
-           <Redirect to={`/home/${ts}/${login.privateKey}/${login.publicKey}`} state={{teste: 'teste'}}/>
+           <Redirect to={`/home/${ts}/${login.privateKey}/${login.publicKey}`}/>
           ) : ''}
           <button type="submit" value="Submit" className="btn btn-lg btn-primary btn-block" onClick={this.handleLogin}>Acessar</button>
         </form>

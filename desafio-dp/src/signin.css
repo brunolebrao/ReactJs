@@ -39,12 +39,33 @@ body {
   }
   .detail-box-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+  }
+  .detail-box-container img {
+    min-width: 170px;
+    width: 25%;
+    border: 2px solid #868e96;
+    padding: 3px;
+    border-radius: 5px;
   }
 
   .detail-box-img-container{
+    width: 11em;
+  }
 
+  .detail-box-text-container {
+    height: 170px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 0px 10px 10px 0px;
+    border-top: 1px solid #868e96;
+    border-bottom: 1px solid #868e96;
+    border-right: 1px solid #868e96;
+    width: 100%;
   }
 
   .detail-box-text-containe{
@@ -55,6 +76,17 @@ body {
 
   }
 
-  .detail-box-text-botton{
+  .detail-box-text-bottom{
 
+  }
+
+  .detail-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 1em;
+  }
+
+  .react-bs-container-header {
+    background: #f8f9fa !important;
   }
