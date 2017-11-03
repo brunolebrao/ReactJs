@@ -3,6 +3,7 @@ import axios from 'axios'
 import md5 from 'md5'
 import { Redirect } from 'react-router'
 import { BrowserRouter, Link } from 'react-router-dom'
+import Fascicles from './Fascicles'
 
 class Detail extends Component {
     constructor(props) {
@@ -55,7 +56,6 @@ class Detail extends Component {
         const {caracters, comics} = this.state
         const {match} = this.props
         const pv = 'c7211b772d95c9f305f27605dac085ac50b95e2d';
-        console.log(caracters)
         return (
             <div className='container'>
                 <div className='detail-box-container'>
@@ -72,7 +72,12 @@ class Detail extends Component {
                         </div>
                         <div className='detail-box-text-bottom'>
                             {caracters.map(item => {
-                                return <div key={3}><h5>Descrição:</h5><p>{item.description}</p></div>
+                                if(item.description.length <= 0){
+                                    return <p>Não há descrição</p>
+                                }else {
+                                    return <div key={3}><h5>Descrição:</h5><p>{item.description}</p></div>
+                                }
+                                
                             })}
                         </div>
                         
@@ -80,6 +85,15 @@ class Detail extends Component {
                 </div>
                 <div className='detail-button'>
                     <Link className="btn btn-lg btn-primary" to={`/home/${match.params.ts}/${pv}/${match.params.pb}`} >Voltar</Link>
+                </div>
+                <div>
+                    <h4 className='fascicles-title-container'>Fascículos</h4>
+                    <hr/>
+                    {comics.map((item) => {
+                        if(item.images.length > 0){
+                            return <Fascicles key={item.id} comics={item}/>
+                        }
+                    })}
                 </div>
             </div>
         );

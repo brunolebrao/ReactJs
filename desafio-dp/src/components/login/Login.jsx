@@ -33,11 +33,11 @@ class Login extends Component {
     switch(event.target.name){
       case 'privateKey' :
       login['privateKey'] = event.target.value
-      this.setState({...login, login})
+      this.setState({...login, login, status: ''})
       break;
       case 'publicKey' :
       login['publicKey'] = event.target.value
-      this.setState({...login, login})
+      this.setState({...login, login, status: ''})
       break;
       default:
     }
@@ -87,7 +87,7 @@ class Login extends Component {
           <input name='publicKey' type="password" className="form-control" placeholder="Digite sua Public Key" onChange={this.handleLoginKey}/>
           {status === 401 || status === 409 ? (
             <div className="alert alert-danger" role="alert">
-              Usuário ou senha invalida
+              Usuário ou senha inválida
             </div>
           ) : ''}
           {status === 200 ? (

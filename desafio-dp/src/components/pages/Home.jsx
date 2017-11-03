@@ -56,18 +56,24 @@ class Home extends Component {
     }
 
     const options = {
-      hideSizePerPage:true
+      hideSizePerPage:true,
+      noDataText: <span>Não contem dados</span>
     };
 
     return (
       <div className='container'>
-          <BootstrapTable
-            data={ caracters.results }
-            pagination
-            options={ options }>
-            <TableHeaderColumn headerAlign='center' width='20%' dataField='name' dataFormat={handleRowName} isKey>Nome</TableHeaderColumn>
-            <TableHeaderColumn headerAlign='center' width='60%' dataField='description'>Descrição</TableHeaderColumn>
-            <TableHeaderColumn headerAlign='center' dataAlign='center' width='20%' dataField='modified' dataFormat={handleRowModified}>Ultima Atualização</TableHeaderColumn>
+        <ul className="nav justify-content-end">
+          <li className="nav-item">
+            <Link className="nav-link active" to={`/`} >Sair</Link>
+          </li>
+        </ul>
+        <BootstrapTable
+          data={ caracters.results }
+          pagination
+          options={ options }>
+          <TableHeaderColumn headerAlign='center' width='20%' dataField='name' dataFormat={handleRowName} isKey>Nome</TableHeaderColumn>
+          <TableHeaderColumn headerAlign='center' width='60%' dataField='description'>Descrição</TableHeaderColumn>
+          <TableHeaderColumn headerAlign='center' dataAlign='center' width='20%' dataField='modified' dataFormat={handleRowModified}>Ultima Atualização</TableHeaderColumn>
         </BootstrapTable>
       </div>
     );
