@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios'
 import md5 from 'md5'
 import { Redirect } from 'react-router'
-import { BrowserRouter, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Fascicles from './Fascicles'
 
 class Detail extends Component {
@@ -92,6 +92,8 @@ class Detail extends Component {
                     {comics.map((item) => {
                         if(item.images.length > 0){
                             return <Fascicles key={item.id} comics={item}/>
+                        }else {
+                            return false
                         }
                     })}
                 </div>

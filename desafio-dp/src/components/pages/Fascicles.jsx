@@ -6,12 +6,14 @@ const Fascicles = ({comics}) => {
             <div className='fascicles-box-img-container'>
                 {comics
                     .images
-                    .map((item, index) => {
+                    .map(function(item, index){
                         if(index === 0) {
                             return <img
                             key={`Image ${item.path}`}
                             src={`${item.path}.${item.extension}`}
                             alt="Fascicles Images"/>
+                        } else {
+                            return false
                         }
                     })}
             </div>
