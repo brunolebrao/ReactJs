@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.0",
     "bootstrap-css-only": "^4.0.0-beta.2",
+    "firebase-tools": "^3.14.0",
     "md5": "^2.2.1",
     "react": "^16.0.0",
     "react-bootstrap-table": "^4.1.1",
